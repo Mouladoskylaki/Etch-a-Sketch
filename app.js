@@ -9,8 +9,13 @@ for (let i = 0; i <= 255; i++) {
     }
 console.log(divs)
 divs.forEach((item) => {
-    item.textContent = ".";
+    // item.textContent = ".";
     container.appendChild(item);
+    item.addEventListener("mouseover", () => {
+        item.style.backgroundColor = "white";
+    })
 })
 }
 divCreator()
+
+
