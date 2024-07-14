@@ -15,14 +15,21 @@ let divs = [];
 const divCreator = () => {
 for (let i = 0; i <= 255; i++) {
     const newDiv = document.createElement("div");
-    newDiv.classList.add("nested-divs")
+    newDiv.classList.add("nested-divs");
+    newDiv.dataset.opacity = 0;
     divs.push(newDiv)
     }
 console.log(divs)
 divs.forEach((item) => {
     container.appendChild(item);
     item.addEventListener("mouseover", () => {
-        item.style.backgroundColor = "grey";
+        let opacity = parseFloat(item.dataset.opacity);
+        if (opacity < 1) {
+            opacity += 0.1;
+            item.dataset.opacity = opacity;
+            item.style.backgroundColor = `rgba(0, 0, 0, ${opacity})`;
+        }
+        // item.style.backgroundColor = "grey";
     })
 })
 }
@@ -39,6 +46,7 @@ const reset = () => {
     for (let i = 1; i <= newBoard; i++) {
         const newDiv = document.createElement("div");
         newDiv.classList.add("nested-divs");
+        newDiv.dataset.opacity = 0;
         divs.push(newDiv)
     }
     console.log(divs);
@@ -48,7 +56,13 @@ const reset = () => {
         item.style.flex = `1 0 calc(100% / ${firstnewBoard})`;
         item.style.height = `calc(100% / ${firstnewBoard})`;
         item.addEventListener("mouseover", () => {
-            item.style.backgroundColor = "grey";
+            let opacity = parseFloat(item.dataset.opacity);
+            if (opacity < 1) {
+                opacity += 0.1;
+                item.dataset.opacity = opacity;
+                item.style.backgroundColor = `rgba(0, 0, 0, ${opacity})`
+            }
+            // item.style.backgroundColor = "grey";
         })
 
         
